@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pradipa D Ahnaf - Web Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .slide-in {
+      animation: slideIn 0.6s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card {
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .project-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    }
+    
+    .typing-animation {
+      border-right: 3px solid #667eea;
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .skill-progress {
+      transition: width 2s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+
+  <!-- Navigation -->
+  <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+    <nav class="glass mx-auto flex max-w-7xl items-center justify-between p-4 px-6 lg:px-8">
+      <div class="flex items-center">
+        <span class="text-2xl font-bold gradient-text">PDA.</span>
+      </div>
+      
+      <div class="hidden lg:flex gap-x-8">
+        <a href="#home" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-600 transition">Home</a>
+        <a href="#about" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-600 transition">About</a>
+        <a href="#skills" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-600 transition">Skills</a>
+        <a href="#projects" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-600 transition">Projects</a>
+        <a href="#contact" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-600 transition">Contact</a>
+      </div>
+      
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="https://github.com/Maximust27" target="_blank" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/pradipa-d-ahnaf-6794a9347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fab fa-linkedin text-xl"></i>
+        </a>
+        <button class="hero-gradient text-white px-5 py-2 rounded-full text-sm font-medium hover:shadow-lg transition">
+          <a href="https://drive.google.com/drive/folders/12vTUafJP82FSp1LkC1t0UXD8vnoMlt52?usp=sharing">Download CV</a>
+        </button>
+      </div>
+      
+      <div class="lg:hidden">
+        <button id="menu-btn" class="text-gray-700 focus:outline-none">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <div id="mobile-menu" class="hidden lg:hidden glass px-6 py-4 space-y-4">
+      <a href="#home" class="block text-gray-700 hover:text-purple-600 transition">Home</a>
+      <a href="#about" class="block text-gray-700 hover:text-purple-600 transition">About</a>
+      <a href="#skills" class="block text-gray-700 hover:text-purple-600 transition">Skills</a>
+      <a href="#projects" class="block text-gray-700 hover:text-purple-600 transition">Projects</a>
+      <a href="#contact" class="block text-gray-700 hover:text-purple-600 transition">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="slide-in">
+        <p class="text-purple-600 font-medium mb-2">👋 Hello, I'm</p>
+        <h1 class="text-5xl lg:text-7xl font-bold mb-4">
+          <span class="gradient-text">Pradipa D Ahnaf</span>
+        </h1>
+        <div class="text-2xl lg:text-3xl font-medium text-gray-700 mb-6">
+          <span class="typing-animation">Web Developer</span>
+        </div>
+        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+          Passionate about creating modern, responsive, and user-friendly web applications 
+          using cutting-edge technologies. Specialized in Laravel, PHP, and modern CSS frameworks.
+        </p>
+        <div class="flex gap-4 flex-wrap">
+          <a href="#projects" class="hero-gradient text-white px-8 py-3 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105">
+            View My Work
+          </a>
+          <a href="#contact" class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-medium hover:bg-purple-600 hover:text-white transition">
+            Let's Connect
+          </a>
+        </div>
+        
+        <div class="flex gap-6 mt-8">
+          <a href="https://github.com/Maximust27" class="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/pradipa-d-ahnaf-6794a9347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <i class="fab fa-linkedin text-2xl"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <i class="fab fa-instagram text-2xl"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-purple-600 transition transform hover:scale-110">
+            <i class="fab fa-twitter text-2xl"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="relative flex justify-center">
+        <div class="float-animation">
+          <div class="relative">
+            <div class="absolute inset-0 hero-gradient rounded-full blur-3xl opacity-30"></div>
+            <img src="style/profile.png" alt="Profile" 
+                 class="relative w-80 h-80 object-cover rounded-full shadow-2xl border-4 border-white"
+                 onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.style.padding='120px'; this.innerHTML='';">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 slide-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">About Me</span>
+        </h2>
+        <p class="text-gray-600">Get to know me better</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="slide-in">
+          <h3 class="text-2xl font-bold mb-4 text-gray-800">
+            A Passionate Web Developer from Indonesia
+          </h3>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            I'm <span class="font-semibold text-purple-600">Pradipa D Ahnaf</span>, a beginner web developer 
+            with a strong enthusiasm for building modern, responsive, and user-friendly websites. 
+            Currently focusing on mastering <span class="font-medium">Laravel, PHP, and TailwindCSS</span> 
+            to develop beneficial web applications.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Beyond coding, I'm also diving deep into UI/UX design to ensure every project 
+            not only functions perfectly but also provides an enjoyable and attractive user experience.
+          </p>
+          
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <i class="fas fa-graduation-cap text-purple-600 text-2xl mb-2"></i>
+              <h4 class="font-semibold text-gray-800">Education</h4>
+              <p class="text-gray-600 text-sm">Computer Science</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <i class="fas fa-briefcase text-purple-600 text-2xl mb-2"></i>
+              <h4 class="font-semibold text-gray-800">Experience</h4>
+              <p class="text-gray-600 text-sm">1+ Years</p>
+            </div>
+          </div>
+          
+          <a href="#contact" class="inline-block hero-gradient text-white px-6 py-3 rounded-full font-medium hover:shadow-lg transition transform hover:scale-105">
+            <i class="fas fa-envelope mr-2"></i>Get in Touch
+          </a>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-6 rounded-2xl transform hover:scale-105 transition">
+              <i class="fas fa-code text-purple-600 text-3xl mb-3"></i>
+              <h4 class="font-bold text-gray-800 mb-2">Clean Code</h4>
+              <p class="text-gray-600 text-sm">Writing maintainable and scalable code</p>
+            </div>
+            <div class="bg-gradient-to-br from-blue-100 to-purple-100 p-6 rounded-2xl transform hover:scale-105 transition">
+              <i class="fas fa-mobile-alt text-blue-600 text-3xl mb-3"></i>
+              <h4 class="font-bold text-gray-800 mb-2">Responsive</h4>
+              <p class="text-gray-600 text-sm">Mobile-first design approach</p>
+            </div>
+          </div>
+          <div class="space-y-4 mt-8">
+            <div class="bg-gradient-to-br from-green-100 to-blue-100 p-6 rounded-2xl transform hover:scale-105 transition">
+              <i class="fas fa-palette text-green-600 text-3xl mb-3"></i>
+              <h4 class="font-bold text-gray-800 mb-2">UI/UX Design</h4>
+              <p class="text-gray-600 text-sm">Creating beautiful interfaces</p>
+            </div>
+            <div class="bg-gradient-to-br from-orange-100 to-red-100 p-6 rounded-2xl transform hover:scale-105 transition">
+              <i class="fas fa-rocket text-orange-600 text-3xl mb-3"></i>
+              <h4 class="font-bold text-gray-800 mb-2">Performance</h4>
+              <p class="text-gray-600 text-sm">Optimized for speed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 slide-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">Technical Skills</span>
+        </h2>
+        <p class="text-gray-600">Technologies I work with</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-html5 text-5xl text-orange-500 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">HTML5</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 90%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-css3-alt text-5xl text-blue-500 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">CSS3</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-js text-5xl text-yellow-500 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">JavaScript</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 20%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-php text-5xl text-purple-600 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">PHP</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-laravel text-5xl text-red-500 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">Laravel</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 70%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <svg class="w-12 h-12 mx-auto mb-3" viewBox="0 0 54 33" fill="none">
+            <path d="M27 0C12.09 0 0 7.38 0 16.5S12.09 33 27 33s27-7.38 27-16.5S41.91 0 27 0z" fill="#38BDF8"/>
+          </svg>
+          <h3 class="font-semibold text-gray-800">Tailwind</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fas fa-database text-5xl text-blue-600 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">MySQL</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 75%"></div>
+          </div>
+        </div>
+        
+        <div class="tech-card bg-white p-6 rounded-xl shadow-lg text-center transition cursor-pointer">
+          <i class="fab fa-git-alt text-5xl text-orange-600 mb-3"></i>
+          <h3 class="font-semibold text-gray-800">Git</h3>
+          <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+            <div class="skill-progress hero-gradient h-2 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-4 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12 slide-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">Featured Projects</span>
+        </h2>
+        <p class="text-gray-600">Some of my recent work</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group cursor-pointer">
+          <div class="relative overflow-hidden h-64">
+            <img src="style/image1.png" alt="Barbershop Project" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                 onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+            <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+              <div class="text-white">
+                <span class="bg-purple-600 px-3 py-1 rounded-full text-xs">Laravel</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Barbershop Website</h3>
+            <p class="text-gray-600 mb-4">Modern barbershop website featuring services, pricing, and online booking system. Built with Laravel and responsive design.</p>
+            <div class="flex gap-2 mb-4">
+              <span class="text-xs bg-purple-100 text-purple-600 px-3 py-1 rounded-full">Laravel</span>
+              <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">MySQL</span>
+              <span class="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">Tailwind</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+              </a>
+              <a href="https://github.com/Maximust27" class="text-gray-600 hover:text-gray-700 font-medium text-sm">
+                <i class="fab fa-github mr-1"></i>GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group cursor-pointer">
+          <div class="relative overflow-hidden h-64">
+            <img src="style/image2.png" alt="CRUD Project" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                 onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+            <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+              <div class="text-white">
+                <span class="bg-blue-600 px-3 py-1 rounded-full text-xs">PHP</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">CRUD Application</h3>
+            <p class="text-gray-600 mb-4">Complete CRUD operations system for data management. Features modern UI and secure database operations.</p>
+            <div class="flex gap-2 mb-4">
+              <span class="text-xs bg-purple-100 text-purple-600 px-3 py-1 rounded-full">PHP</span>
+              <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">MySQL</span>
+              <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">Bootstrap</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+              </a>
+              <a href="https://github.com/Maximust27" class="text-gray-600 hover:text-gray-700 font-medium text-sm">
+                <i class="fab fa-github mr-1"></i>GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden group cursor-pointer">
+          <div class="relative overflow-hidden h-64">
+            <img src="style/image3.png" alt="Coffee Shop Project" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                 onerror="this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'">
+            <div class="absolute inset-0 project-overlay opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+              <div class="text-white">
+                <span class="bg-green-600 px-3 py-1 rounded-full text-xs">HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Coffee Shop Website</h3>
+            <p class="text-gray-600 mb-4">Elegant coffee shop website with menu showcase, location info, and contact details. Fully responsive design.</p>
+            <div class="flex gap-2 mb-4">
+              <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">HTML5</span>
+              <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">CSS3</span>
+              <span class="text-xs bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">JavaScript</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                <i class="fas fa-external-link-alt mr-1"></i>Live Demo
+              </a>
+              <a href="https://github.com/Maximust27" class="text-gray-600 hover:text-gray-700 font-medium text-sm">
+                <i class="fab fa-github mr-1"></i>GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-block border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-medium hover:bg-purple-600 hover:text-white transition">
+          View All Projects <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 slide-in">
+        <h2 class="text-4xl font-bold mb-4">
+          <span class="gradient-text">Get In Touch</span>
+        </h2>
+        <p class="text-gray-600">Let's work together on your next project</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="slide-in">
+          <h3 class="text-2xl font-bold mb-6 text-gray-800">Let's Connect</h3>
+          <p class="text-gray-600 mb-8">
+            I'm always interested in hearing about new projects and opportunities. 
+            Whether you have a question or just want to say hi, feel free to reach out!
+          </p>
+          
+          <div class="space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 hero-gradient rounded-full flex items-center justify-center text-white">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="font-medium text-gray-800">pradipaanf@gmail.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 hero-gradient rounded-full flex items-center justify-center text-white">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Phone</p>
+                <p class="font-medium text-gray-800">+62 888 0398 9016</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 hero-gradient rounded-full flex items-center justify-center text-white">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">Location</p>
+                <p class="font-medium text-gray-800">Cilacap, Central Java, Indonesia</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex gap-4 mt-8">
+            <a href="https://github.com/Maximust27" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-600 hover:text-white transition">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/pradipa-d-ahnaf-6794a9347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-600 hover:text-white transition">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/_ahnaaaff?igsh=c2Jjb2s2NXE2NHh5" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-600 hover:text-white transition">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-purple-600 hover:text-white transition">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-xl">
+          <form class="space-y-6">
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Name</label>
+              <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition" placeholder="Your Name">
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Email</label>
+              <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition" placeholder="your.email@example.com">
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Subject</label>
+              <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition" placeholder="Project Discussion">
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 font-medium mb-2">Message</label>
+              <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 transition resize-none" placeholder="Tell me about your project..."></textarea>
+            </div>
+            
+            <button type="submit" class="w-full hero-gradient text-white py-3 rounded-lg font-medium hover:shadow-lg transition transform hover:scale-[1.02]">
+              Send Message <i class="fas fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="mb-6">
+        <span class="text-3xl font-bold gradient-text">PDA.</span>
+      </div>
+      <p class="text-gray-400 mb-6">Building digital experiences with passion and precision</p>
+      <div class="flex justify-center gap-6 mb-8">
+        <a href="#home" class="text-gray-400 hover:text-purple-400 transition">Home</a>
+        <a href="#about" class="text-gray-400 hover:text-purple-400 transition">About</a>
+        <a href="#skills" class="text-gray-400 hover:text-purple-400 transition">Skills</a>
+        <a href="#projects" class="text-gray-400 hover:text-purple-400 transition">Projects</a>
+        <a href="#contact" class="text-gray-400 hover:text-purple-400 transition">Contact</a>
+      </div>
+      <div class="border-t border-gray-800 pt-8">
+        <p class="text-gray-400">© 2025 Pradipa D Ahnaf (Maximust). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 hero-gradient text-white rounded-full shadow-lg hidden hover:shadow-xl transition transform hover:scale-110">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-lg');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-lg');
+      }
+      
+      // Show/hide back to top button
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.classList.remove('hidden');
+      } else {
+        backToTop.classList.add('hidden');
+      }
+    });
+    
+    // Back to top functionality
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu if open
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+    
+    // Animate skill bars on scroll
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-in');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
