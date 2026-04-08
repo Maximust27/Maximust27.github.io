@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pradipa D Ahnaf - Web Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            zinc: {
+              900: '#18181b',
+              950: '#09090b',
+            }
+          },
+          animation: {
+            // Changed from forwards to both so elements stay hidden during their animation-delay
+            'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'float': 'float 6s ease-in-out infinite',
+            'float-slow': 'float 8s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(5deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 21st.dev signature styles */
+    body {
+      background-color: #09090b; /* zinc-950 */
+      color: #e4e4e7; /* zinc-200 */
+    }
+
+    /* Subtle SVG Noise Overlay */
+    .bg-noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Dot Grid Background for Hero */
+    .bg-dot-grid {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 32px 32px;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    }
+
+    /* Text Gradients */
+    .text-gradient {
+      background: linear-gradient(to right bottom, #ffffff 30%, #a1a1aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .text-gradient-accent {
+      background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glassmorphism Elements */
+    .glass-panel {
+      background: rgba(24, 24, 27, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Card Hover Effects */
+    .bento-card {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y),
+        rgba(255, 255, 255, 0.08),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bento-card:hover::after {
+      opacity: 1;
+    }
+    .bento-card:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Minimalist Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+    /* Intersection Observer Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Preloader specific utilities */
+    .ease-apple {
+      transition-timing-function: cubic-bezier(0.85, 0, 0.15, 1);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30 selection:text-purple-200 overflow-x-hidden relative h-screen overflow-hidden" id="body-wrapper">
+
+  <!-- Initial Entry Animation Overlay -->
+  <div id="entry-overlay" class="fixed inset-0 bg-zinc-950 z-[100] flex flex-col items-center justify-center transition-transform duration-[1200ms] ease-apple">
+    <div class="overflow-hidden mb-6">
+      <span id="entry-text" class="block text-4xl md:text-6xl font-bold text-white tracking-tighter transform translate-y-full transition-transform duration-700 ease-out">PDA.</span>
+    </div>
+    <div class="w-48 h-[1px] bg-zinc-800 overflow-hidden">
+      <div id="entry-progress" class="h-full bg-white w-0 transition-all duration-700 ease-out"></div>
+    </div>
+  </div>
+
+  <!-- Noise Texture -->
+  <div class="bg-noise"></div>
+
+  <!-- Ambient Light Leaks -->
+  <div class="parallax-orb fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none z-[-1] transition-transform duration-1000 ease-out"></div>
+  <div class="parallax-orb fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none z-[-1] transition-transform duration-1000 ease-out"></div>
+
+  <!-- Floating Navigation -->
+  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-fit">
+    <nav class="glass-panel rounded-full px-2 py-2 flex items-center gap-1 sm:gap-2 shadow-2xl shadow-black/50">
+      <div class="px-4 border-r border-white/10 hidden sm:block">
+        <span class="font-bold text-white tracking-tighter">PDA.</span>
+      </div>
+      <div class="flex items-center gap-1 sm:gap-2 px-2">
+        <a href="#home" class="magnetic nav-item px-4 py-2 rounded-full text-sm font-medium text-white bg-white/10 hover:text-white hover:bg-white/15 transition-all">Home</a>
+        <a href="#about" class="magnetic nav-item px-4 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 transition-all">About</a>
+        <a href="#projects" class="magnetic nav-item px-4 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Work</a>
+        <a href="#contact" class="magnetic nav-item px-4 py-2 rounded-full text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Contact</a>
+      </div>
+      <div class="pl-2 pr-1 border-l border-white/10">
+        <a href="https://drive.google.com/drive/folders/12vTUafJP82FSp1LkC1t0UXD8vnoMlt52?usp=sharing" target="_blank" class="magnetic flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-zinc-200 transition-all">
+          <span>CV</span> <i class="fas fa-arrow-down text-xs"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 overflow-hidden">
+    
+    <!-- Hero Subtle Printilan Background -->
+    <div class="absolute inset-0 bg-dot-grid z-0 pointer-events-none opacity-60"></div>
+    
+    <!-- Floating Tech Accents (Detail Kecil) -->
+    <div class="absolute top-1/4 left-[15%] text-zinc-600/40 text-xl font-mono animate-float z-0 select-none pointer-events-none" style="animation-delay: 0s;">+</div>
+    <div class="absolute top-1/3 right-[20%] text-purple-500/20 text-2xl font-mono animate-float-slow z-0 select-none pointer-events-none" style="animation-delay: 1s;">{ }</div>
+    <div class="absolute bottom-1/3 left-[25%] w-1.5 h-1.5 rounded-full bg-blue-500/40 blur-[1px] animate-pulse-slow z-0 select-none pointer-events-none"></div>
+    <div class="absolute top-[40%] right-[10%] text-zinc-600/30 text-sm font-mono animate-spin-slow z-0 select-none pointer-events-none">/></div>
+    <div class="absolute bottom-1/4 right-[25%] text-zinc-700/50 text-lg font-mono animate-float z-0 select-none pointer-events-none" style="animation-delay: 2.5s;">*</div>
+    <div class="absolute top-[20%] left-[30%] w-2 h-2 rounded-full border border-zinc-700/50 animate-float-slow z-0 select-none pointer-events-none" style="animation-delay: 1.5s;"></div>
+
+    <div class="max-w-4xl mx-auto text-center z-10 flex flex-col items-center relative">
+      
+      <!-- Availability Badge (Delayed to sync with entry animation) -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel border-white/10 mb-8 animate-fade-up shadow-[0_0_20px_rgba(16,185,129,0.1)]" style="animation-delay: 1s;">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="text-xs font-medium text-zinc-300">Available for work</span>
+      </div>
+
+      <!-- Main Headline (Delayed) -->
+      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1] mb-6 animate-fade-up" style="animation-delay: 1.1s;">
+        Building digital <br>
+        <span class="text-gradient">experiences.</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl font-light mb-10 animate-fade-up leading-relaxed" style="animation-delay: 1.2s;">
+        I'm <span class="text-white font-medium">Pradipa D Ahnaf</span>, a Web Developer specializing in Laravel, PHP, and modern frontend frameworks to create scalable, aesthetic web applications.
+      </p>
+
+      <!-- Action Buttons (Delayed) -->
+      <div class="flex flex-wrap justify-center gap-4 animate-fade-up" style="animation-delay: 1.3s;">
+        <a href="#projects" class="magnetic group flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-zinc-200 hover:scale-105 transition-all duration-300">
+          View Projects 
+          <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="https://github.com/Maximust27" target="_blank" class="magnetic flex items-center gap-2 glass-panel px-6 py-3 rounded-full font-medium text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid / About & Skills Section -->
+  <section id="about" class="py-24 px-4 sm:px-8 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="mb-12 reveal">
+        <h2 class="text-3xl font-bold tracking-tight text-white mb-2">About & Skills</h2>
+        <p class="text-zinc-400">Everything you need to know about my background.</p>
+      </div>
+
+      <!-- Bento Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+        
+        <!-- Bio Card (Spans 2 cols) -->
+        <div class="bento-card glass-panel rounded-3xl p-8 md:col-span-2 lg:col-span-2 reveal">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center mb-6">
+            <i class="fas fa-user text-white text-sm"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-3 tracking-tight">Who I am</h3>
+          <p class="text-zinc-400 leading-relaxed font-light">
+            I'm an enthusiastic developer from Indonesia with a strong passion for building responsive and user-friendly websites. I focus heavily on writing clean code with <span class="text-white font-medium">Laravel and TailwindCSS</span>, while keeping a keen eye on UI/UX design principles to ensure every project looks as good as it functions.
+          </p>
+        </div>
+
+        <!-- Location Card -->
+        <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group reveal" style="transition-delay: 0.1s;">
+          <div class="relative z-10">
+            <div class="text-zinc-400 text-sm mb-1">Location</div>
+            <div class="text-lg font-semibold text-white tracking-tight">Cilacap, Indonesia</div>
+            <div class="text-zinc-500 text-xs mt-1">Central Java</div>
+          </div>
+          <!-- Abstract Map/Globe Graphic -->
+          <div class="absolute -bottom-10 -right-10 text-white/5 group-hover:text-white/10 transition-colors">
+            <i class="fas fa-globe-asia text-[150px] animate-spin-slow"></i>
+          </div>
+        </div>
+
+        <!-- Socials/Connect Card -->
+        <div class="bento-card glass-panel rounded-3xl p-8 flex flex-col justify-center gap-4 reveal" style="transition-delay: 0.2s;">
+          <div class="text-zinc-400 text-sm mb-2">Connect</div>
+          <a href="https://www.linkedin.com/in/pradipa-d-ahnaf-6794a9347" target="_blank" class="flex items-center gap-3 text-zinc-300 hover:text-white transition-colors group">
+            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0A66C2] transition-colors">
+              <i class="fab fa-linkedin-in text-sm"></i>
+            </div>
+            <span class="font-medium text-sm">LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/_ahnaaaff?igsh=c2Jjb2s2NXE2NHh5" target="_blank" class="flex items-center gap-3 text-zinc-300 hover:text-white transition-colors group">
+            <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-pink-500 group-hover:to-purple-500 transition-all">
+              <i class="fab fa-instagram text-sm"></i>
+            </div>
+            <span class="font-medium text-sm">Instagram</span>
+          </a>
+        </div>
+
+        <!-- Tech Stack Card (Spans full width on small, 4 cols on large) -->
+        <div class="bento-card glass-panel rounded-3xl p-8 md:col-span-3 lg:col-span-4 reveal" style="transition-delay: 0.3s;">
+          <div class="flex items-center justify-between mb-8">
+            <h3 class="text-xl font-semibold text-white tracking-tight">Tech Stack</h3>
+            <i class="fas fa-code text-zinc-500"></i>
+          </div>
+          
+          <div class="flex flex-wrap gap-3">
+            <!-- Modern Tech Pills instead of progress bars -->
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-orange-500/50 transition-colors">
+              <i class="fab fa-html5 text-orange-500"></i> <span class="text-sm font-medium text-zinc-300">HTML5</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-blue-500/50 transition-colors">
+              <i class="fab fa-css3-alt text-blue-500"></i> <span class="text-sm font-medium text-zinc-300">CSS3</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-yellow-400/50 transition-colors">
+              <i class="fab fa-js text-yellow-400"></i> <span class="text-sm font-medium text-zinc-300">JavaScript</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-purple-400/50 transition-colors">
+              <i class="fab fa-php text-purple-400"></i> <span class="text-sm font-medium text-zinc-300">PHP</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-red-500/50 transition-colors">
+              <i class="fab fa-laravel text-red-500"></i> <span class="text-sm font-medium text-zinc-300">Laravel</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-cyan-400/50 transition-colors">
+              <svg class="w-4 h-4 text-cyan-400 fill-current" viewBox="0 0 54 33"><path d="M27 0C12.09 0 0 7.38 0 16.5S12.09 33 27 33s27-7.38 27-16.5S41.91 0 27 0z"/></svg>
+              <span class="text-sm font-medium text-zinc-300">TailwindCSS</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-blue-400/50 transition-colors">
+              <i class="fas fa-database text-blue-400"></i> <span class="text-sm font-medium text-zinc-300">MySQL</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 border border-white/5 hover:border-orange-600/50 transition-colors">
+              <i class="fab fa-git-alt text-orange-600"></i> <span class="text-sm font-medium text-zinc-300">Git</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 px-4 sm:px-8 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-white mb-2">Selected Works</h2>
+          <p class="text-zinc-400">A collection of my recent projects.</p>
+        </div>
+        <a href="https://github.com/Maximust27" target="_blank" class="hidden md:flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors mt-4 md:mt-0">
+          View all on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Project 1 (Flowmerce) -->
+        <div class="group relative rounded-3xl glass-panel p-2 overflow-hidden reveal">
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 z-10 pointer-events-none rounded-3xl"></div>
+          
+          <div class="relative h-72 w-full overflow-hidden rounded-2xl bg-zinc-900">
+            <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" style="background-image: url('src/img3.png'); background-position: top;"></div>
+          </div>
+
+          <!-- Content -->
+          <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+            <div class="flex gap-2 mb-3">
+              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">AI / ML</span>
+              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Laravel</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Flowmerce</h3>
+            <p class="text-zinc-300 text-sm font-light mb-4 line-clamp-2">Sistem Manajemen Berbasis AI Terintegrasi. Membantu UMKM menganalisis stok, melacak keuangan, dan bertindak sebagai konsultan bisnis pintar 24/7.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-white group/link">
+              View Project <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 (Sipandu) -->
+        <div class="group relative rounded-3xl glass-panel p-2 overflow-hidden reveal" style="transition-delay: 0.1s;">
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 z-10 pointer-events-none rounded-3xl"></div>
+          
+          <div class="relative h-72 w-full overflow-hidden rounded-2xl bg-zinc-900">
+            <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" style="background-image: url('src/img2.png'); background-position: top;"></div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 w-full p-8 z-20">
+            <div class="flex gap-2 mb-3">
+              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Laravel</span>
+              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">MySQL</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Sipandu Platform</h3>
+            <p class="text-zinc-300 text-sm font-light mb-4 line-clamp-2">Sistem Posyandu Digital Terpadu. Platform untuk memantau tumbuh kembang anak, jadwal imunisasi, dan status gizi secara real-time.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-white group/link">
+              View Project <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 (EduTalent) - Spans full width -->
+        <div class="group relative rounded-3xl glass-panel p-2 overflow-hidden lg:col-span-2 reveal" style="transition-delay: 0.2s;">
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 z-10 pointer-events-none rounded-3xl"></div>
+          
+          <div class="relative h-80 w-full overflow-hidden rounded-2xl bg-zinc-900">
+            <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" style="background-image: url('src/img1.png'); background-position: top;"></div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 w-full p-8 md:p-10 z-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="max-w-xl">
+              <div class="flex gap-2 mb-3">
+                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Vue.js</span>
+                <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Tailwind</span>
+              </div>
+              <h3 class="text-3xl font-bold text-white mb-3">EduTalent Holistic</h3>
+              <p class="text-zinc-300 text-base font-light">Platform Pendidikan Holistik. Mensinergikan nilai akademik sekolah dengan potensi ekstrakurikuler untuk membantu menemukan "Hidden Gem" pada setiap siswa dengan akurasi tinggi.</p>
+            </div>
+            <a href="#" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-zinc-200 transition-colors shrink-0">
+              Live Demo
+            </a>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Mobile GitHub link -->
+      <div class="mt-8 text-center md:hidden reveal">
+        <a href="https://github.com/Maximust27" class="inline-flex items-center gap-2 text-sm font-medium text-white px-6 py-3 rounded-full border border-white/10 bg-white/5">
+          View all on GitHub <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 px-4 sm:px-8 relative z-10">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="glass-panel rounded-3xl p-8 md:p-12 text-center reveal">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">Let's build something <br><span class="text-gradient-accent">extraordinary.</span></h2>
+        <p class="text-zinc-400 mb-10 max-w-lg mx-auto font-light text-lg">
+          Currently open for new opportunities. Whether you have a project in mind or just want to chat, I'll try my best to get back to you!
+        </p>
+
+        <form id="contactForm" action="https://formsubmit.co/pradipaanf16@gmail.com" method="POST" class="max-w-md mx-auto space-y-4 text-left mb-10">
+          <div class="relative">
+            <input type="text" name="name" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 focus:bg-zinc-800/50 transition-all text-sm" placeholder="Your Name">
+          </div>
+          <div class="relative">
+            <input type="email" name="email" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 focus:bg-zinc-800/50 transition-all text-sm" placeholder="Email Address">
+          </div>
+          <div class="relative">
+            <textarea name="message" rows="4" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 focus:bg-zinc-800/50 transition-all text-sm resize-none" placeholder="Tell me about your project..."></textarea>
+          </div>
+          <button type="submit" id="submitButton" class="w-full bg-white text-black py-3 rounded-xl font-medium hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 group">
+            <span id="sendText">Send Message</span>
+            <span id="sendingText" class="hidden">Sending...</span>
+            <i class="fas fa-paper-plane text-sm transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" id="sendIcon"></i>
+          </button>
+        </form>
+
+        <div class="flex flex-wrap justify-center gap-6 pt-8 border-t border-white/5">
+          <div class="flex items-center gap-2 text-zinc-400 text-sm">
+            <i class="fas fa-envelope"></i> pradipaanf@gmail.com
+          </div>
+          <div class="flex items-center gap-2 text-zinc-400 text-sm">
+            <i class="fas fa-phone"></i> +62 888 0398 9016
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-white/5 relative z-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-white tracking-tighter">PDA.</span>
+        <span class="text-zinc-600 text-sm">© 2026</span>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/Maximust27" class="text-zinc-500 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/pradipa-d-ahnaf-6794a9347" class="text-zinc-500 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/_ahnaaaff?igsh=c2Jjb2s2NXE2NHh5" class="text-zinc-500 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Entry Animation (Preloader) Sequence ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('entry-overlay');
+      const text = document.getElementById('entry-text');
+      const progress = document.getElementById('entry-progress');
+      const bodyWrapper = document.getElementById('body-wrapper');
+
+      // 1. Munculkan teks "PDA."
+      setTimeout(() => {
+        text.classList.remove('translate-y-full');
+      }, 100);
+
+      // 2. Jalankan animasi progress bar
+      setTimeout(() => {
+        progress.style.width = '100%';
+      }, 300);
+
+      // 3. Tarik tirai hitam ke atas dan kembalikan scroll body
+      setTimeout(() => {
+        overlay.classList.add('-translate-y-full');
+        bodyWrapper.classList.remove('h-screen', 'overflow-hidden');
+        
+        // Hapus elemen dari DOM agar tidak menutupi klik
+        setTimeout(() => overlay.remove(), 1200);
+      }, 1000);
+    });
+
+    // Reveal Animations on Scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const revealOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- Efek Spotlight pada Bento Cards ---
+    document.querySelectorAll('.bento-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // --- Efek Tombol Magnetik ---
+    const magnets = document.querySelectorAll('.magnetic');
+    magnets.forEach(magnet => {
+      magnet.addEventListener('mousemove', (e) => {
+        const position = magnet.getBoundingClientRect();
+        const x = e.clientX - position.left - position.width / 2;
+        const y = e.clientY - position.top - position.height / 2;
+        
+        // Membatasi pergerakan agar tidak terlalu jauh
+        magnet.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      
+      magnet.addEventListener('mouseleave', () => {
+        magnet.style.transform = `translate(0px, 0px)`;
+      });
+    });
+
+    // --- Active Nav Link saat Scroll ---
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        // Deteksi bagian yang sedang aktif dengan offset
+        if (pageYOffset >= (sectionTop - 250)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('text-white', 'bg-white/10');
+        item.classList.add('text-zinc-400');
+        if (item.getAttribute('href').substring(1) === current) {
+          item.classList.add('text-white', 'bg-white/10');
+          item.classList.remove('text-zinc-400');
+        }
+      });
+    });
+
+    // --- Efek Parallax pada Latar Belakang Cahaya (Ambient Lights) ---
+    const orbs = document.querySelectorAll('.parallax-orb');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+
+      // Geser sedikit berlawanan arah mouse
+      orbs[0].style.transform = `translate(${x * -80}px, ${y * -80}px)`;
+      orbs[1].style.transform = `translate(${x * 80}px, ${y * 80}px)`;
+    });
+
+    // Form Submission Handling
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitButton');
+    const sendTxt = document.getElementById('sendText');
+    const sendingTxt = document.getElementById('sendingText');
+    const sendIcn = document.getElementById('sendIcon');
+
+    form.addEventListener('submit', function(e) {
+      // Allow default formsubmit.co behavior to happen
+      // But change UI state to show sending
+      
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+      sendTxt.classList.add('hidden');
+      sendingTxt.classList.remove('hidden');
+      sendIcn.className = 'fas fa-spinner fa-spin text-sm';
+      
+      // The form will navigate away to formsubmit.co naturally.
+      // If you want purely AJAX without redirect, you would use fetch() here and e.preventDefault().
+    });
+  </script>
+</body>
+</html>
