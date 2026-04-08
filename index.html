@@ -358,7 +358,7 @@
           <div class="absolute bottom-0 left-0 w-full p-8 z-20">
             <div class="flex gap-2 mb-3">
               <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">AI / ML</span>
-              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">React</span>
+              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Laravel</span>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">Flowmerce</h3>
             <p class="text-zinc-300 text-sm font-light mb-4 line-clamp-2">Sistem Manajemen Berbasis AI Terintegrasi. Membantu UMKM menganalisis stok, melacak keuangan, dan bertindak sebagai konsultan bisnis pintar 24/7.</p>
@@ -433,7 +433,14 @@
           Currently open for new opportunities. Whether you have a project in mind or just want to chat, I'll try my best to get back to you!
         </p>
 
-        <form id="contactForm" action="https://formsubmit.co/pradipaanf16@gmail.com" method="POST" class="max-w-md mx-auto space-y-4 text-left mb-10">
+        <!-- FormSubmit Setup with AJAX -->
+        <form id="contactForm" class="max-w-md mx-auto space-y-4 text-left mb-10">
+          
+          <!-- Hidden inputs for FormSubmit configurations -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="box">
+          <input type="hidden" name="_subject" value="New message from Portfolio!">
+
           <div class="relative">
             <input type="text" name="name" required class="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white/30 focus:bg-zinc-800/50 transition-all text-sm" placeholder="Your Name">
           </div>
@@ -594,7 +601,7 @@
       orbs[1].style.transform = `translate(${x * 80}px, ${y * 80}px)`;
     });
 
-    // Form Submission Handling
+    // --- Real Form Submission Menggunakan AJAX (FormSubmit) ---
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitButton');
     const sendTxt = document.getElementById('sendText');
@@ -602,17 +609,64 @@
     const sendIcn = document.getElementById('sendIcon');
 
     form.addEventListener('submit', function(e) {
-      // Allow default formsubmit.co behavior to happen
-      // But change UI state to show sending
+      e.preventDefault(); // Mencegah form memuat ulang halaman
       
+      // Ubah state tombol menjadi loading
       submitBtn.disabled = true;
       submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
       sendTxt.classList.add('hidden');
       sendingTxt.classList.remove('hidden');
       sendIcn.className = 'fas fa-spinner fa-spin text-sm';
       
-      // The form will navigate away to formsubmit.co naturally.
-      // If you want purely AJAX without redirect, you would use fetch() here and e.preventDefault().
+      // Gunakan URL endpoint /ajax/ milik formsubmit
+      fetch("https://formsubmit.co/ajax/pradipaanf16@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: form._subject.value,
+            _template: form._template.value,
+            _captcha: form._captcha.value,
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Jika sukses terkirim
+        sendingTxt.classList.add('hidden');
+        sendTxt.textContent = 'Message Sent!';
+        sendTxt.classList.remove('hidden');
+        sendIcn.className = 'fas fa-check text-sm text-emerald-400';
+        
+        form.reset(); // Kosongkan input form
+        
+        // Kembalikan tombol ke semula setelah 3 detik
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+          sendTxt.textContent = 'Send Message';
+          sendIcn.className = 'fas fa-paper-plane text-sm transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform';
+        }, 3000);
+      })
+      .catch(error => {
+        // Jika gagal
+        console.error(error);
+        sendingTxt.classList.add('hidden');
+        sendTxt.textContent = 'Error! Try Again';
+        sendTxt.classList.remove('hidden');
+        sendIcn.className = 'fas fa-exclamation-triangle text-sm text-red-500';
+        
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+          sendTxt.textContent = 'Send Message';
+          sendIcn.className = 'fas fa-paper-plane text-sm transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform';
+        }, 3000);
+      });
     });
   </script>
 </body>
