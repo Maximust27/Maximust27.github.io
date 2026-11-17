@@ -387,7 +387,11 @@
                   <span class="w-2 h-2 rounded-full bg-emerald-400/60"></span>
                   <span class="ml-3 text-[10px] text-zinc-400 tracking-wide">Flowmerce · Workspace</span>
                 </div>
-                <img src="src/img3.png" data-flowmerce-preview="dashboard" loading="lazy" decoding="async" alt="Flowmerce business management project interface preview" class="block w-full aspect-[16/9] object-cover object-top">
+                <div data-flowmerce-placeholder="landing" class="w-full aspect-[16/9] bg-gradient-to-br from-[#252e35] via-[#1b2228] to-[#12171a] flex flex-col items-center justify-center gap-3 px-6 text-center">
+                  <span class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">flowmerce<span class="text-[#ff8879]">.</span></span>
+                  <span class="text-sm font-medium text-zinc-400">An integrated workspace for small businesses</span>
+                </div>
+                <img data-flowmerce-preview="landing" loading="lazy" decoding="async" alt="Flowmerce landing page showing the business workspace introduction" class="hidden w-full aspect-[16/9] object-cover object-top">
               </div>
             </div>
           </div>
@@ -765,19 +769,21 @@
     });
   </script>
 
-  <!-- Upgrade to user-provided Flowmerce screenshot after it is uploaded to the repository. -->
+  <!-- Show the supplied Flowmerce landing screenshot as soon as landing.webp is present. -->
   <script>
     (function () {
-      const previews = document.querySelectorAll('[data-flowmerce-preview="dashboard"]');
+      const previews = document.querySelectorAll('[data-flowmerce-preview="landing"]');
       if (!previews.length) return;
       const image = new Image();
       image.onload = function () {
         previews.forEach(function (preview) {
           preview.src = image.src;
-          preview.alt = 'Flowmerce dashboard overview with inventory and financial summaries';
+          preview.classList.remove('hidden');
+          const placeholder = preview.parentElement.querySelector('[data-flowmerce-placeholder="landing"]');
+          if (placeholder) placeholder.classList.add('hidden');
         });
       };
-      image.src = 'src/flowmerce/dashboard.webp';
+      image.src = 'src/flowmerce/landing.webp';
     })();
   </script>
 
