@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flowmerce: a Laravel and Livewire full-stack case study about POS checkout, inventory consistency, finance records and role-based access.">
+  <meta name="theme-color" content="#111518">
+  <title>Flowmerce Case Study | Pradipa D Ahnaf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; background:#111518; color:#f6f7f8; }
+    .surface { background:#1a2026; border:1px solid rgba(255,255,255,.09); }
+    .accent { color:#ff9586; }
+    .focusable:focus-visible { outline:2px solid #ff9586; outline-offset:4px; }
+    ::selection { background:rgba(255,149,134,.32); }
+  </style>
+</head>
+<body class="antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-white focus:text-black focus:px-4 focus:py-3">Skip to content</a>
+  <header class="border-b border-white/10 bg-[#151a1f]/95">
+    <nav aria-label="Case study navigation" class="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex items-center justify-between gap-3">
+      <a href="index.html#projects" class="focusable text-sm font-medium text-zinc-300 hover:text-white transition-colors"><i class="fas fa-arrow-left mr-2" aria-hidden="true"></i> Portfolio</a>
+      <a href="index.html" class="font-bold text-xl tracking-tight">PDA<span class="accent">.</span></a>
+      <a href="https://github.com/Maximust27/Flowmerce" target="_blank" rel="noopener noreferrer" class="focusable text-sm font-medium text-zinc-300 hover:text-white transition-colors"><i class="fab fa-github mr-2" aria-hidden="true"></i> GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="relative overflow-hidden pt-16 pb-12 sm:pt-24 sm:pb-16">
+      <div class="absolute -right-24 top-0 w-96 h-96 rounded-full bg-[#ff806d]/10 blur-3xl pointer-events-none"></div>
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative">
+        <div class="flex flex-wrap gap-3 items-center mb-6">
+          <span class="text-xs font-bold tracking-[.16em] uppercase accent">Featured Case Study · 2026</span>
+          <span class="text-zinc-500 text-xs">Full-Stack Web Application</span>
+        </div>
+        <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight mb-5">Flowmerce<span class="accent">.</span></h1>
+        <p class="text-2xl sm:text-3xl font-semibold leading-snug text-white mb-5 max-w-3xl">Connecting everyday retail operations in one workspace.</p>
+        <p class="text-zinc-300 max-w-3xl leading-relaxed text-base sm:text-lg">
+          A Laravel-based business management project exploring how a small retail team can work with sales, inventory, finances, employees, and table-based ordering within one connected system.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="https://github.com/Maximust27/Flowmerce" target="_blank" rel="noopener noreferrer" class="focusable px-5 py-3 bg-[#ff9586] hover:bg-[#ffac9c] text-[#171515] rounded-xl font-semibold text-sm transition-colors"><i class="fab fa-github mr-2" aria-hidden="true"></i> Explore Source Code</a>
+          <a href="https://github.com/Maximust27/Flowmerce/blob/main/docs/PORTFOLIO_CASE_STUDY.md" target="_blank" rel="noopener noreferrer" class="focusable px-5 py-3 rounded-xl surface hover:bg-white/10 font-medium text-sm transition-colors">Technical Documentation <i class="fas fa-arrow-up-right-from-square ml-2 text-xs" aria-hidden="true"></i></a>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-8">
+          <span class="text-xs px-3 py-1.5 rounded-full surface text-zinc-300">PHP 8.4</span>
+          <span class="text-xs px-3 py-1.5 rounded-full surface text-zinc-300">Laravel 13</span>
+          <span class="text-xs px-3 py-1.5 rounded-full surface text-zinc-300">Livewire</span>
+          <span class="text-xs px-3 py-1.5 rounded-full surface text-zinc-300">Tailwind CSS</span>
+          <span class="text-xs px-3 py-1.5 rounded-full surface text-zinc-300">Eloquent ORM</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Flowmerce interface preview" class="max-w-6xl mx-auto px-5 sm:px-8 pb-20">
+      <figure class="surface rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
+        <div class="flex items-center gap-2 bg-[#222a30] px-5 py-4 border-b border-white/10">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#ff9586]"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-300/60"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-300/60"></span>
+          <span class="ml-3 text-xs text-zinc-400">Flowmerce / Workspace</span>
+        </div>
+        <img data-flowmerce-preview="dashboard" src="src/img3.png" alt="Existing Flowmerce interface preview" class="w-full block aspect-[16/9] object-cover object-top" decoding="async">
+        <figcaption class="px-5 py-3 text-xs text-zinc-400">Interface preview from the project. Additional screenshots are shown below when available.</figcaption>
+      </figure>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12">
+        <div class="lg:col-span-4">
+          <p class="accent text-xs font-bold uppercase tracking-widest mb-3">01 / The Problem</p>
+          <h2 class="text-3xl font-bold tracking-tight">Disconnected daily operations.</h2>
+        </div>
+        <div class="lg:col-span-8 text-zinc-300 leading-relaxed space-y-4">
+          <p>Small retailers often need several steps to record a sale, update stock quantities, and keep financial records aligned. As those processes grow apart, maintaining consistent information becomes harder.</p>
+          <p>Flowmerce explores how these connected tasks can live in one business workspace. The emphasis is on the links between the workflows, not just on building individual screens.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-white/10 bg-[#151a1f]">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20">
+        <p class="accent text-xs font-bold uppercase tracking-widest mb-3">02 / Key Functionality</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-8">More than a dashboard.</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="surface rounded-2xl p-6"><i class="fas fa-cash-register accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">Point of Sale</h3><p class="text-zinc-400 text-sm leading-relaxed">Product selection, cart totals, and checkout with recorded orders and items.</p></article>
+          <article class="surface rounded-2xl p-6"><i class="fas fa-boxes-stacked accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">Inventory &amp; Stock</h3><p class="text-zinc-400 text-sm leading-relaxed">Product records, available quantities, inventory movements, and low-stock visibility.</p></article>
+          <article class="surface rounded-2xl p-6"><i class="fas fa-chart-line accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">Financial Records</h3><p class="text-zinc-400 text-sm leading-relaxed">Income and expense entries connected with business reporting and sales activity.</p></article>
+          <article class="surface rounded-2xl p-6"><i class="fas fa-users accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">Team Roles</h3><p class="text-zinc-400 text-sm leading-relaxed">Distinct admin and cashier workspaces protected by role-based routes.</p></article>
+          <article class="surface rounded-2xl p-6"><i class="fas fa-qrcode accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">Tables &amp; QR</h3><p class="text-zinc-400 text-sm leading-relaxed">An interface for table management and QR-related ordering workflows.</p></article>
+          <article class="surface rounded-2xl p-6"><i class="fas fa-sparkles accent mb-5 text-xl" aria-hidden="true"></i><h3 class="font-semibold text-lg mb-2">AI Assistant Interface</h3><p class="text-zinc-400 text-sm leading-relaxed">A conversational workspace for questions about business operations.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-20">
+      <p class="accent text-xs font-bold uppercase tracking-widest mb-3">03 / Engineering</p>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">One checkout. Connected records.</h2>
+      <p class="text-zinc-300 max-w-3xl mb-10 leading-relaxed">The POS checkout flow is the clearest example of the architecture. The application groups the related database changes inside a transaction, locks stock rows before updating them, and checks whether quantities are sufficient.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div class="surface rounded-2xl p-5"><span class="accent text-xs font-bold">STEP 01</span><h3 class="font-semibold mt-3 mb-2">Record the order</h3><p class="text-zinc-400 text-sm">Save the order, its totals, and purchased items.</p></div>
+        <div class="surface rounded-2xl p-5"><span class="accent text-xs font-bold">STEP 02</span><h3 class="font-semibold mt-3 mb-2">Verify stock</h3><p class="text-zinc-400 text-sm">Lock product rows and reject insufficient quantities.</p></div>
+        <div class="surface rounded-2xl p-5"><span class="accent text-xs font-bold">STEP 03</span><h3 class="font-semibold mt-3 mb-2">Track inventory</h3><p class="text-zinc-400 text-sm">Reduce stock and write inventory movement logs.</p></div>
+        <div class="surface rounded-2xl p-5"><span class="accent text-xs font-bold">STEP 04</span><h3 class="font-semibold mt-3 mb-2">Record income</h3><p class="text-zinc-400 text-sm">Create the financial entry and invalidate cached dashboard stats.</p></div>
+      </div>
+
+      <div class="surface rounded-2xl p-5 sm:p-7 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div><h3 class="font-semibold mb-1">Explore the implementation</h3><p class="text-zinc-400 text-sm">The checkout flow is implemented in a Laravel Livewire component.</p></div>
+        <a href="https://github.com/Maximust27/Flowmerce/blob/main/app/Livewire/Pos/Terminal.php" target="_blank" rel="noopener noreferrer" class="focusable shrink-0 font-semibold text-sm accent hover:text-[#ffb4a8]">View Checkout Source <i class="fas fa-arrow-up-right-from-square ml-1" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <!-- This gallery reveals itself automatically once the user-provided screenshots are uploaded to src/flowmerce/. -->
+    <section id="gallery" class="hidden bg-[#151a1f] border-y border-white/10">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-20">
+        <p class="accent text-xs font-bold uppercase tracking-widest mb-3">04 / Interface Gallery</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-8">From the workspace.</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="inventory"><img alt="Flowmerce inventory screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Product &amp; inventory management</figcaption></figure>
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="finance"><img alt="Flowmerce finance screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Financial overview</figcaption></figure>
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="pos"><img alt="Flowmerce point of sale screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Point-of-sale workspace</figcaption></figure>
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="ai-assistant"><img alt="Flowmerce AI assistant screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">AI assistant interface</figcaption></figure>
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="tables-qr"><img alt="Flowmerce table and QR management screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Table &amp; QR workspace</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12">
+        <div class="lg:col-span-4"><p class="accent text-xs font-bold uppercase tracking-widest mb-3">05 / Engineering Reflections</p><h2 class="text-3xl font-bold tracking-tight">What I would improve next.</h2></div>
+        <div class="lg:col-span-8 text-zinc-300 leading-relaxed space-y-4">
+          <p>This project demonstrates a connected checkout and inventory flow, but a convincing production-grade system also needs stronger automated coverage of edge cases. The immediate priorities are testing insufficient stock, parallel checkouts, role boundaries, and financial totals.</p>
+          <p>I would also document a reproducible local demo environment, use fictional sample data, and add continuous integration checks. These are planned improvements rather than claims of completed testing.</p>
+          <p class="text-zinc-500 text-sm">Portfolio status: the code is publicly available for review. This case study does not claim production deployment, active business users, or verified performance metrics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 pb-24">
+      <div class="rounded-3xl p-7 sm:p-10 border border-[#ff9586]/20 bg-gradient-to-r from-[#ff9586]/10 to-transparent">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-3">Interested in how it works?</h2>
+        <p class="text-zinc-300 mb-7 max-w-2xl">Read the code, review the technical notes, or explore more full-stack projects from my portfolio.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/Maximust27/Flowmerce" target="_blank" rel="noopener noreferrer" class="focusable px-5 py-3 bg-[#ff9586] hover:bg-[#ffac9c] text-[#171515] rounded-xl font-semibold text-sm">View Repository</a>
+          <a href="index.html#projects" class="focusable px-5 py-3 surface hover:bg-white/10 rounded-xl font-medium text-sm">Back to All Projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="border-t border-white/10 py-7"><div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-wrap justify-between gap-3 text-zinc-500 text-xs"><span>© 2026 Pradipa D Ahnaf</span><span>Flowmerce · Full-Stack Case Study</span></div></footer>
+
+  <script>
+    (function () {
+      const dashboard = new Image();
+      dashboard.onload = function () {
+        document.querySelectorAll('[data-flowmerce-preview="dashboard"]').forEach(function (img) {
+          img.src = dashboard.src;
+          img.alt = 'Flowmerce dashboard with sales, inventory, and financial summaries';
+        });
+      };
+      dashboard.src = 'src/flowmerce/dashboard.webp';
+
+      const gallery = document.getElementById('gallery');
+      document.querySelectorAll('[data-gallery-shot]').forEach(function (figure) {
+        const name = figure.getAttribute('data-gallery-shot');
+        const shot = new Image();
+        shot.onload = function () {
+          figure.querySelector('img').src = shot.src;
+          figure.classList.remove('hidden');
+          gallery.classList.remove('hidden');
+        };
+        shot.src = 'src/flowmerce/' + name + '.webp';
+      });
+    })();
+  </script>
+</body>
+</html>
