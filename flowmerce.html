@@ -62,8 +62,12 @@
           <span class="w-2.5 h-2.5 rounded-full bg-[#ff9586]"></span><span class="w-2.5 h-2.5 rounded-full bg-amber-300/60"></span><span class="w-2.5 h-2.5 rounded-full bg-emerald-300/60"></span>
           <span class="ml-3 text-xs text-zinc-400">Flowmerce / Workspace</span>
         </div>
-        <img data-flowmerce-preview="dashboard" src="src/img3.png" alt="Existing Flowmerce interface preview" class="w-full block aspect-[16/9] object-cover object-top" decoding="async">
-        <figcaption class="px-5 py-3 text-xs text-zinc-400">Interface preview from the project. Additional screenshots are shown below when available.</figcaption>
+        <div data-flowmerce-placeholder="landing" class="w-full aspect-[16/9] bg-gradient-to-br from-[#222d34] to-[#141a1d] flex flex-col items-center justify-center gap-3 p-8 text-center">
+          <span class="text-4xl sm:text-6xl font-extrabold tracking-tight">flowmerce<span class="accent">.</span></span>
+          <span class="text-sm sm:text-base text-zinc-400">Everything your small business needs, in one workspace.</span>
+        </div>
+        <img data-flowmerce-preview="landing" alt="Flowmerce landing page with its introductory business workspace interface" class="hidden w-full aspect-[16/9] object-cover object-top" decoding="async">
+        <figcaption class="px-5 py-3 text-xs text-zinc-400">Flowmerce landing page. Application screenshots appear in the gallery below.</figcaption>
       </figure>
     </section>
 
@@ -119,6 +123,7 @@
         <p class="accent text-xs font-bold uppercase tracking-widest mb-3">04 / Interface Gallery</p>
         <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-8">From the workspace.</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="dashboard"><img alt="Flowmerce dashboard overview with business metrics and activity" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Business overview dashboard</figcaption></figure>
           <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="inventory"><img alt="Flowmerce inventory screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Product &amp; inventory management</figcaption></figure>
           <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="finance"><img alt="Flowmerce finance screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Financial overview</figcaption></figure>
           <figure class="hidden surface rounded-2xl overflow-hidden" data-gallery-shot="pos"><img alt="Flowmerce point of sale screen" class="w-full aspect-[16/9] object-cover object-top" loading="lazy"><figcaption class="px-4 py-3 text-sm text-zinc-400">Point-of-sale workspace</figcaption></figure>
@@ -154,14 +159,16 @@
 
   <script>
     (function () {
-      const dashboard = new Image();
-      dashboard.onload = function () {
-        document.querySelectorAll('[data-flowmerce-preview="dashboard"]').forEach(function (img) {
-          img.src = dashboard.src;
-          img.alt = 'Flowmerce dashboard with sales, inventory, and financial summaries';
+      const landing = new Image();
+      landing.onload = function () {
+        document.querySelectorAll('[data-flowmerce-preview="landing"]').forEach(function (img) {
+          img.src = landing.src;
+          img.classList.remove('hidden');
+          const placeholder = img.parentElement.querySelector('[data-flowmerce-placeholder="landing"]');
+          if (placeholder) placeholder.classList.add('hidden');
         });
       };
-      dashboard.src = 'src/flowmerce/dashboard.webp';
+      landing.src = 'src/flowmerce/landing.webp';
 
       const gallery = document.getElementById('gallery');
       document.querySelectorAll('[data-gallery-shot]').forEach(function (figure) {
