@@ -346,27 +346,52 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        <!-- Project 1 (Flowmerce) -->
-        <div class="group relative rounded-3xl glass-panel p-2 overflow-hidden reveal">
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 z-10 pointer-events-none rounded-3xl"></div>
-          
-          <div class="relative h-72 w-full overflow-hidden rounded-2xl bg-zinc-900">
-            <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" style="background-image: url('src/img3.png'); background-position: top;"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="absolute bottom-0 left-0 w-full p-8 z-20">
-            <div class="flex gap-2 mb-3">
-              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">POS / AI</span>
-              <span class="px-3 py-1 text-[10px] uppercase tracking-wider font-semibold bg-white/10 text-white rounded-full backdrop-blur-md">Laravel</span>
+        <!-- Featured Project (Flowmerce) -->
+        <article class="lg:col-span-2 group relative rounded-3xl border border-orange-300/20 bg-[#1a2026] overflow-hidden reveal shadow-[0_24px_80px_-45px_rgba(255,125,103,0.45)]">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#ff806d]/10 via-transparent to-transparent pointer-events-none"></div>
+          <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-0">
+            <div class="p-7 sm:p-9 lg:p-12 flex flex-col justify-center">
+              <div class="flex flex-wrap items-center gap-2 mb-5">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#ff8879]/15 text-[#ff9d8e] border border-[#ff8879]/20 text-[11px] font-semibold uppercase tracking-widest">
+                  <i class="fas fa-star text-[10px]" aria-hidden="true"></i> Featured Project
+                </span>
+                <span class="text-zinc-500 text-xs">Full-Stack · 2026</span>
+              </div>
+              <h3 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3">Flowmerce<span class="text-[#ff8879]">.</span></h3>
+              <p class="text-xl sm:text-2xl font-semibold text-white/95 tracking-tight mb-4">Business operations, connected.</p>
+              <p class="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
+                An integrated business workspace bringing POS checkout, inventory, financial records, team roles, and AI-assisted workflows together for small retail businesses.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-7" aria-label="Main technologies">
+                <span class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-zinc-300">Laravel</span>
+                <span class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-zinc-300">Livewire</span>
+                <span class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-zinc-300">PHP</span>
+                <span class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/5 border border-white/10 text-zinc-300">Eloquent</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <a href="flowmerce.html" class="inline-flex items-center gap-2 px-5 py-3 bg-[#ff8879] hover:bg-[#ff9d8e] text-[#1a1718] rounded-xl font-semibold text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff8879]">
+                  Explore Case Study <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/Maximust27/Flowmerce" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 border border-white/15 bg-white/5 hover:bg-white/10 text-white rounded-xl font-medium text-sm transition-colors">
+                  <i class="fab fa-github" aria-hidden="true"></i> Source Code
+                </a>
+              </div>
+              <p class="text-zinc-500 text-xs mt-5">Source code and case study available · No public demo deployment</p>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Flowmerce</h3>
-            <p class="text-zinc-300 text-sm font-light mb-4 line-clamp-2">An all-in-one retail workspace for managing inventory, processing sales, and tracking finances, featuring POS checkout and an AI chat assistant.</p>
-            <a href="https://github.com/Maximust27/Flowmerce" target="_blank" rel="noopener noreferrer" aria-label="View Flowmerce source code on GitHub" class="inline-flex items-center gap-2 text-sm font-medium text-white group/link">
-              View Source Code <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
-            </a>
+            <div class="relative p-5 sm:p-7 lg:p-9 lg:pl-0 flex items-center justify-center min-h-[280px]">
+              <div class="absolute inset-0 bg-gradient-to-br from-[#ff8879]/10 via-transparent to-zinc-950/40 pointer-events-none"></div>
+              <div class="relative w-full rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-black/60 bg-zinc-950 transform transition-transform duration-700 group-hover:scale-[1.015]">
+                <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 bg-[#20272d]" aria-hidden="true">
+                  <span class="w-2 h-2 rounded-full bg-[#ff8879]"></span>
+                  <span class="w-2 h-2 rounded-full bg-amber-300/60"></span>
+                  <span class="w-2 h-2 rounded-full bg-emerald-400/60"></span>
+                  <span class="ml-3 text-[10px] text-zinc-400 tracking-wide">Flowmerce · Workspace</span>
+                </div>
+                <img src="src/img3.png" data-flowmerce-preview="dashboard" loading="lazy" decoding="async" alt="Flowmerce business management project interface preview" class="block w-full aspect-[16/9] object-cover object-top">
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- Project 2 (Sipandu) -->
         <div class="group relative rounded-3xl glass-panel p-2 overflow-hidden reveal" style="transition-delay: 0.1s;">
@@ -739,5 +764,22 @@
       });
     });
   </script>
+
+  <!-- Upgrade to user-provided Flowmerce screenshot after it is uploaded to the repository. -->
+  <script>
+    (function () {
+      const previews = document.querySelectorAll('[data-flowmerce-preview="dashboard"]');
+      if (!previews.length) return;
+      const image = new Image();
+      image.onload = function () {
+        previews.forEach(function (preview) {
+          preview.src = image.src;
+          preview.alt = 'Flowmerce dashboard overview with inventory and financial summaries';
+        });
+      };
+      image.src = 'src/flowmerce/dashboard.webp';
+    })();
+  </script>
+
 </body>
 </html>
